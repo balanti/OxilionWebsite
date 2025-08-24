@@ -4,6 +4,12 @@ import Link from 'next/link';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 
+interface BlogPostPageProps {
+  params: {
+    slug: string;
+  };
+}
+
 const blogPosts = {
   'foreign-exchange-market-dynamics': {
     title: "Understanding Nigeria's Foreign Exchange Market Dynamics",
@@ -242,7 +248,7 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+export default function BlogPost({ params }: BlogPostPageProps) {
   const post = blogPosts[params.slug as keyof typeof blogPosts];
   
   if (!post) {
